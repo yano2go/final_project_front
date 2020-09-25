@@ -17,7 +17,7 @@ export default function Upload() {
      
        fetchData();
      }, [url]);
-     const [formInputs, updateFormInputs] = useState({  name: '', desription: '', category: '', gif_url:''});
+     const [formInputs, updateFormInputs] = useState({  name: '', description: '', category: '', gif_url:''});
      const handleSubmit  = async (event) =>{
        event.preventDefault()
        try{
@@ -45,7 +45,7 @@ export default function Upload() {
      return (
          <div className="Gifform">
            `${JSON.stringify(gifData)}`
-           <h4>Post your favoDite beer</h4>
+           <h4>Post your gif</h4>
          <form onSubmit= {handleSubmit}>
            <label htmlFor="description">description</label>
            <input type="text" onChange={(event)=>updateFormInputs({...formInputs, description:event.target.value})}/>
@@ -57,7 +57,9 @@ export default function Upload() {
            <input type="text" onChange={(event)=>updateFormInputs({...formInputs, gif_url:event.target.value})}/>
            <input type="submit" className="submit" />
          </form>
+          <p>{formInputs.name}</p>
          <img src={formInputs.gif_url} />
+         <p>{formInputs.description}</p>
          </div>
        );
      }
