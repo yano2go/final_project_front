@@ -41,7 +41,20 @@ export default function Upload() {
            gif_url:'',
          })
          console.log(data)
-         history.push("/cooking");
+         switch(formInputs.category) {
+          case 'cooking':
+               history.push('/cooking')
+              break;
+          case 'diy':
+               history.push('/diy')
+              break;
+          case 'programming':
+               history.push('/artsandcrafts')
+              break;
+          case 'artsandcrafts':
+            default: 
+              history.push('/')
+          }
          // setNotices([data, ...notices])
        }catch(error){
          console.error(error)

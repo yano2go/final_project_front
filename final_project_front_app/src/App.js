@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { 
   BrowserRouter as Router,
-  Switch,
   Route  } from 'react-router-dom'
 import Upload from './Components/Upload'
 import Homepage from './Components/Homepage'
@@ -24,7 +23,6 @@ function App() {
             <Upload />
             </Route>
           <Route path="/cooking">
-            <gifs category="cooking" />
             <Cooking />
             {/* this will be: <Gifs category="cooking" />*/}
           </Route>
