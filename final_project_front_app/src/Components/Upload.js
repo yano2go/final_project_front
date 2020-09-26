@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router';
+import { useHistory } from "react-router-dom";
+
 
 
 export default function Upload() {
+     let history = useHistory();
      const url = 'http://localhost:3000/gifs'
      const [gifData, setGifData] = useState([]);
      useEffect(() => {
@@ -37,6 +41,7 @@ export default function Upload() {
            gif_url:'',
          })
          console.log(data)
+         history.push("/cooking");
          // setNotices([data, ...notices])
        }catch(error){
          console.error(error)

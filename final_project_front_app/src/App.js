@@ -4,33 +4,43 @@ import {
   BrowserRouter as Router,
   Switch,
   Route  } from 'react-router-dom'
-
 import Upload from './Components/Upload'
 import Homepage from './Components/Homepage'
+import Cooking from './Components/Cooking'
+import DIY from './Components/DIY'
+import Programming from './Components/Programming'
+import ArtsandCrafts from './Components/ArtsandCrafts'
 
 function App() {
   return (
     <div>
+      
       <Router>
-        <Switch>
-          <Route path="/">
+      
+        <Route path="/">
             <Homepage />
           </Route>
+        <Route path="/upload">
+            <Upload />
+            </Route>
           <Route path="/cooking">
-            <Homepage />{/* this will be: <Gifs category="cooking" />*/}
+            <gifs category="cooking" />
+            <Cooking />
+            {/* this will be: <Gifs category="cooking" />*/}
           </Route>
           <Route path="/diy">
-            <Homepage />
+            <DIY />
           </Route>
           <Route path="/artsandcrafts">
-            <Homepage />
+            <ArtsandCrafts />
           </Route>
           <Route path="/programming">
-            <Homepage />
+            <Programming />
           </Route>
-        </Switch>
         {/* put a Navbar component here*/}
+        
       </Router>
+      
     </div>
     
   );
