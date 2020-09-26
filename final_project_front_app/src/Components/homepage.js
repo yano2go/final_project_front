@@ -1,19 +1,40 @@
-import _ from "underscore";
-function homepage() {
-  const serverData = getServerData();
-  const categories = _.uniq(serverData.map(({ category }) => category));
-  return (
-    <div className="card">
-      {categories.map((categoryName, i) => {
-        const firstGif = serverData.filter(
-          ({ category }) => category === categoryName
-        )[0];
+import React from 'react';
+import { Link } from 'react-router-dom'
 
+
+export default function homepage() {
+  const categories = [
+    {
+      name: "Cooking Gifs",
+      image_url: "#",
+      slug: "/cooking"
+    }, 
+    {
+      name: 'DIY',
+      image_url: "#",
+      slug: "/diy"
+    },
+     {
+       name: 'Arts and Crafts',
+       image_url: "#",
+       slug: '/artsandcrafts'
+      }, 
+      {
+        name: 'Programming',
+        image_url:'#',
+        slug: '/programming'
+      }];
+  return (
+    <div className="container">
+      {categories.map((category, i) => {
         return (
-          <div className="contents" key={i}>
-            <h3>{categoryName}</h3>
-            <img src={firstGif.gif_url} alt="can't find it!" />
+          <Link to={category.slug}>
+            <div className="category" key={`#{i}-#{category.name}`}>
+            <h3>{category.name}</h3>
+            <img src={category.image_url}/>
           </div>
+          </Link>
+          
         );
       })}
     </div>
