@@ -5,10 +5,6 @@ import {
   Route  } from 'react-router-dom'
 import Upload from './Components/Upload'
 import Homepage from './Components/Homepage'
-import Cooking from './Components/Cooking'
-import DIY from './Components/DIY'
-import Programming from './Components/Programming'
-import ArtsandCrafts from './Components/ArtsandCrafts'
 import Categories from './Components/Categories'
 
 function App() {
@@ -24,15 +20,14 @@ function App() {
             <Upload />
             </Route>
           <Route path="/cooking">
-            <Cooking />
             <Categories category="cooking" />
           </Route>
           <Route path="/diy">
-            <DIY />
+           
             <Categories category="diy" />
           </Route>
           <Route path="/artsandcrafts">
-            <ArtsandCrafts />
+            
             <Categories category="ArtsandCraft" />
           </Route>
           <Route path="/programming">

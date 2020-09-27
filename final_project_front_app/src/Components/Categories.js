@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Category(props) {
+     const category = props.category
      const [categoryData, setCategoryData] = useState([]);
-     const url = 'http://localhost:3000/gifs'
+     const url = `http://localhost:3000/?category=${props.category}`
      useEffect(() => {
           const fetchData = async () =>{
                const response = await fetch(url, { method: 'get'});
@@ -11,6 +12,8 @@ export default function Category(props) {
           }    
           fetchData();
      },[url]);
+
+     
           
      //      const APIKEY = process.env.REACT_APP_APIKEY ;
       
@@ -48,6 +51,7 @@ export default function Category(props) {
      return (
           <div>
                {categoryGifs}
+               <h1>{category}</h1>
                {/* {gfyCatGifs} */}
           </div>
      )
