@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 
 export default function Upload() {
-     let history = useHistory();
      const url = 'http://localhost:3000/gifs'
      const [gifData, setGifData] = useState([]);
      useEffect(() => {
@@ -40,21 +39,6 @@ export default function Upload() {
            name: '',
            gif_url:'',
          })
-         console.log(data)
-         switch(formInputs.category) {
-          case 'cooking':
-               history.push('/cooking')
-              break;
-          case 'diy':
-               history.push('/diy')
-              break;
-          case 'programming':
-               history.push('/artsandcrafts')
-              break;
-          case 'artsandcrafts':
-            default: 
-              history.push('/')
-          }
          // setNotices([data, ...notices])
        }catch(error){
          console.error(error)
