@@ -9,6 +9,7 @@ import Cooking from './Components/Cooking'
 import DIY from './Components/DIY'
 import Programming from './Components/Programming'
 import ArtsandCrafts from './Components/ArtsandCrafts'
+import Categories from './Components/Categories'
 
 function App() {
   return (
@@ -24,16 +25,18 @@ function App() {
             </Route>
           <Route path="/cooking">
             <Cooking />
-            {/* this will be: <Gifs category="cooking" />*/}
+            <Categories category="cooking" />
           </Route>
           <Route path="/diy">
             <DIY />
+            <Categories category="diy" />
           </Route>
           <Route path="/artsandcrafts">
             <ArtsandCrafts />
+            <Categories category="ArtsandCraft" />
           </Route>
           <Route path="/programming">
-            <Programming />
+          <Categories category="programming" />
           </Route>
         {/* put a Navbar component here*/}
         
