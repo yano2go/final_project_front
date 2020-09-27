@@ -29,10 +29,10 @@ export default function Category(props) {
 
      //    },[baseURL]);
 
-     const cookingGifs = categoryData.map((cookingItem, index) => {
+     const categoryGifs = categoryData.map((categoryItem, index) => {
           return (
                <div key={index}>
-                    <img src={cookingItem.gif_url}/>
+                    <img src={categoryItem.gif_url}/>
                </div>
                
           );
@@ -47,7 +47,7 @@ export default function Category(props) {
      // })
      return (
           <div>
-               {cookingGifs}
+               {categoryGifs}
                {/* {gfyCatGifs} */}
           </div>
      )
