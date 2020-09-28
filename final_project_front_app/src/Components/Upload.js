@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router';
-import { useHistory } from "react-router-dom";
+
 
 
 
@@ -52,7 +51,14 @@ export default function Upload() {
            <label htmlFor="description">description</label>
            <input type="text" onChange={(event)=>updateFormInputs({...formInputs, description:event.target.value})}/>
            <label htmlFor="category">category</label>
-           <input type="text" onChange={(event)=>updateFormInputs({...formInputs, category:event.target.value})}/>
+           <select type="text" onChange={(event)=>updateFormInputs({...formInputs, category:event.target.value})}>
+           <option>select an option</option>
+           <option>Arts and crafts</option>
+           <option>programming</option>
+           <option>cooking</option>
+           <option>DIY</option>
+           <option>Random</option>
+           </select>
            <label htmlFor="name">name</label>
            <input type="text" onChange={(event)=>updateFormInputs({...formInputs, name:event.target.value})}/>
            <label htmlFor="gif_url">gif_url</label>
