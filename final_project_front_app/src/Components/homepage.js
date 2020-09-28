@@ -6,17 +6,17 @@ export default function Homepage(props) {
   const categories = [
     {
       name: "Cooking Gifs",
-      image_url: "#",
+      // image_url: "https://i.imgur.com/xmuGNtv.jpg",
       slug: "/cooking"
     }, 
     {
       name: 'DIY',
-      image_url: "#",
+      // image_url: "https://i.imgur.com/aI339pc.jpg",
       slug: "/diy"
     },
      {
        name: 'Arts and Crafts',
-       image_url: "#",
+      //  image_url: "https://i.imgur.com/ZxXMMWO.jpg?1",
        slug: '/artsandcrafts'
       }, 
       
@@ -26,8 +26,14 @@ export default function Homepage(props) {
     },
       {
         name: 'Programming',
-        image_url:'#',
+        // image_url:'https://i.imgur.com/ywf8GXy.jpg',
         slug: '/programming'
+      },
+        {
+          name: 'Random',
+          // image_url:'https://i.imgur.com/tPorzfS.jpg',
+          slug: '/random'
+        
       }];
   return (
     <div className="container">
