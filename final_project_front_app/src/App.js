@@ -6,13 +6,15 @@ import {
 import Upload from './Components/Upload'
 import Homepage from './Components/Homepage'
 import Categories from './Components/Categories'
+import NavBar from "./Components/NavBar/NavBar";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div>
       
       <Router>
-      
+      <NavBar></NavBar>
         <Route path="/">
             <Homepage />
           </Route>
