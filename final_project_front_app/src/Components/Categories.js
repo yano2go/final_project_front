@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {useRouteMatch} from 'react-router-dom'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Categories(props) {
-     const category = props.category
+export default function Categories() {
      const {path} = useRouteMatch();
-     const slug = path.slice(1)
+     const slug = path.slice(1) // could be "cooking" or "dyi"
      const [categoryData, setCategoryData] = useState([]);
      const url = `http://localhost:3000/gifs?category=${slug}`
      console.log(url);
@@ -37,10 +36,28 @@ export default function Categories(props) {
 
      //    },[baseURL]);
 
+     const handleDelete  = async (id) =>{
+          //event.preventDefault()
+          console.log("the id is: ", id);
+          try{
+            const response = await fetch ( `http://localhost:3000/gifs/${id}`, {
+              
+               method: 'DELETE',
+            })
+            const filterGifs = categoryData.filter(gif => !(gif.id === id))
+            await setCategoryData(filterGifs);
+            
+          }catch(error){
+            console.error(error)
+          }
+        }
      const categoryGifs = categoryData.map((categoryItem, index) => {
+          console.log(categoryItem.id)
           return (
                <div key={index}>
+                    <h2>{categoryItem.name}</h2>
                     <img src={categoryItem.gif_url}/>
+                    <button onClick={() => handleDelete(categoryItem.id)} >delete gif</button>
                </div>
                
           );
@@ -54,9 +71,9 @@ export default function Categories(props) {
      //      )
      // })
      return (
-          <div>
+          <div className={""}>
+               <h1>{slug}</h1>
                {categoryGifs}
-               <h1>{category}</h1>
                {/* {gfyCatGifs} */}
           </div>
      )
