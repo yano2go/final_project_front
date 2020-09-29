@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import { 
-  BrowserRouter as Router,
-  Route  } from 'react-router-dom'
+import {  Route  } from 'react-router-dom'
 import Upload from './Components/Upload'
 import Homepage from './Components/Homepage'
 import Categories from './Components/Categories'
@@ -12,33 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div>
-      
-      <Router>
       <NavBar />
-        <Route path="/">
-            <Homepage />
-          </Route>
-        <Route path="/upload">
-            <Upload />
-            </Route>
-          <Route path="/cooking">
-            <Categories category="cooking" />
-          </Route>
-          <Route path="/diy">
-           
-            <Categories category="diy" />
-          </Route>
-          <Route path="/artsandcrafts">
-            
-            <Categories category="ArtsandCraft" />
-          </Route>
-          <Route path="/programming">
-          <Categories category="programming" />
-          </Route>
-        {/* put a Navbar component here*/}
-        
-      </Router>
-      
+        <Route path="/" exact component={Homepage} />
+        <Route path="/upload" exact component={Upload}/>
+        <Route path="/cooking" exact component={Categories} />
+        <Route path="/diy" exact component={Categories} />
+        <Route path="/artsandcrafts" exact component={Categories} />
+        <Route path="/programming" component={Categories}/>
     </div>
     
   );

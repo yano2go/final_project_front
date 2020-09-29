@@ -31,6 +31,8 @@ export default function Homepage(props) {
           slug: '/random'
         
       }];
+
+      
   return (
     <div className="container">
       {categories.map((category, i) => {
