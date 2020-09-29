@@ -38,7 +38,7 @@ export default function Upload() {
            name: '',
            gif_url:'',
          })
-         // setNotices([data, ...notices])
+         
        }catch(error){
          console.error(error)
        }

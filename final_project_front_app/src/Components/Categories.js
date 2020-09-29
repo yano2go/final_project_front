@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './NavBar/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Category(props) {
      const category = props.category
@@ -16,22 +16,22 @@ export default function Category(props) {
 
      
           
-          const APIKEY = process.env.REACT_APP_APIKEY ;
+     //      const APIKEY = process.env.REACT_APP_APIKEY ;
       
-        const [allReturnedObjects, setAllReturnedObjects] = useState([]);
+     //    const [allReturnedObjects, setAllReturnedObjects] = useState([]);
         
-        const baseURL = 'https://api.gfycat.com/v1/gfycats/search?search_text=cooking';
+     //    const baseURL = 'https://api.gfycat.com/v1/gfycats/search?search_text=cooking';
         
 
-        useEffect(()=>{
-             const fetchGfyCat = async () => {
-                  const gfyCatResponse = await fetch(baseURL, {method: 'get', Authorization: `${APIKEY}`});
-                    const allReturnedData = await gfyCatResponse.json();
-                    setAllReturnedObjects(allReturnedData.gfycats);
-               } 
-          fetchGfyCat();
+     //    useEffect(()=>{
+     //         const fetchGfyCat = async () => {
+     //              const gfyCatResponse = await fetch(baseURL, {method: 'get', Authorization: `${APIKEY}`});
+     //                const allReturnedData = await gfyCatResponse.json();
+     //                setAllReturnedObjects(allReturnedData.gfycats);
+     //           } 
+     //      fetchGfyCat();
 
-        },[baseURL]);
+     //    },[baseURL]);
 
      const categoryGifs = categoryData.map((categoryItem, index) => {
           return (
@@ -42,18 +42,18 @@ export default function Category(props) {
           );
      
      });
-     const gfyCatGifs = allReturnedObjects.map((gfyCatGif, index)=>{
-          return (
-               <div key={index}>
-                    <img src = {gfyCatGif.gifUrl} />
-                </div> 
-          )
-     })
+     // const gfyCatGifs = allReturnedObjects.map((gfyCatGif, index)=>{
+     //      return (
+     //           <div key={index}>
+     //                <img src = {gfyCatGif.gifUrl} />
+     //            </div> 
+     // //      )
+     // })
      return (
           <div>
                {categoryGifs}
                <h1>{category}</h1>
-               {gfyCatGifs}
+               {/* {gfyCatGifs} */}
           </div>
      )
 };

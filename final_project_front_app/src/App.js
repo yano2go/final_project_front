@@ -14,7 +14,7 @@ function App() {
     <div>
       
       <Router>
-      <NavBar></NavBar>
+      <NavBar />
         <Route path="/">
             <Homepage />
           </Route>
