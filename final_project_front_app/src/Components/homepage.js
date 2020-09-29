@@ -20,10 +20,6 @@ export default function Homepage(props) {
        slug: '/artsandcrafts'
       }, 
       
-      { name: 'Upload',
-        image_url:'#',
-        slug: '/upload',
-    },
       {
         name: 'Programming',
         // image_url:'https://i.imgur.com/ywf8GXy.jpg',
