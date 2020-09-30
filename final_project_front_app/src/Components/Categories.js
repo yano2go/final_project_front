@@ -42,7 +42,7 @@ export default function Categories() {
      console.log(showEditForm)
     
           const EditForm = ({id}) =>{
-               const [formInputs, updateFormInputs] = useState({  name: '', description: '', category: '', id});
+               const [formInputs, setFormInputs] = useState({name: '', description: ''});
                const handleChange  = async (event) =>{
                     event.preventDefault()
                     try{
@@ -55,12 +55,14 @@ export default function Categories() {
                         }
                       })
                       const data = await response.json()
-                      updateFormInputs({
-                        description: '',
-                        category: '',
-                        name: '',
+                      setShowForm(false)
+                      const updatedCategoryData = categoryData.map(gif => gif.id === id ? data : gif)
+                      await setCategoryData(updatedCategoryData);
+                      // setFormInputs({
+                      //   description: '',
+                      //   name: '',
                         
-                      })
+                      // })
                       
                     }catch(error){
                       console.error(error)
@@ -74,9 +76,9 @@ export default function Categories() {
          <form onSubmit= {handleChange}>
               
            <label htmlFor="description">description</label>
-           <input type="text" onChange={(event)=>updateFormInputs({...formInputs, description:event.target.value})}/>
+           <input type="text" onChange={(event)=>setFormInputs({...formInputs, description:event.target.value})}/>
            <label htmlFor="name">name</label>
-           <input type="text" onChange={(event)=>updateFormInputs({...formInputs, name:event.target.value})}/>
+           <input type="text" onChange={(event)=>setFormInputs({...formInputs, name:event.target.value})}/>
            <input type="submit" className="submit" />
          </form>
           <p>{formInputs.name}</p>
@@ -107,6 +109,7 @@ export default function Categories() {
                <div key={index}>
                     <h2>{categoryItem.name}</h2>
                     <img src={categoryItem.gif_url}/>
+                    <p>{categoryItem.description}</p>
                     <button onClick={() => handleDelete(categoryItem.id)} >delete gif</button>
                     <button onClick = {()=>setShowForm(true)}>edit</button>
                     {showEditForm ? <EditForm id= {categoryItem.id}></EditForm> : null}
