@@ -6,7 +6,7 @@ export default function Homepage(props) {
   const categories = [
     {
       name: "Cooking Gifs",
-      // image_url: "https://i.imgur.com/xmuGNtv.jpg",
+      //  image_url: "https://i.imgur.com/xmuGNtv.jpg",
       slug: "/cooking"
     }, 
     {
