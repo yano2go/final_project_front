@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useRouteMatch} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Categories() {
@@ -107,9 +108,11 @@ export default function Categories() {
           console.log(categoryItem.id)
           return (
                <div key={index}>
+                    <Link to={{ pathname: "/show", state: {categoryItem}}}>   
                     <h2>{categoryItem.name}</h2>
                     <img src={categoryItem.gif_url}/>
                     <p>{categoryItem.description}</p>
+                    </Link>
                     <button onClick={() => handleDelete(categoryItem.id)} >delete gif</button>
                     <button onClick = {()=>setShowForm(true)}>edit</button>
                     {showEditForm ? <EditForm id= {categoryItem.id}></EditForm> : null}

@@ -22,8 +22,9 @@ export default class SignUp extends Component {
                   
                 }
               })
-              console.log(await response.body)
+              
               const data = await response.json()
+              console.log(data)
               this.setState({
                 username: "",
                 password: '',

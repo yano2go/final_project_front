@@ -8,6 +8,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Switch from 'react-bootstrap/esm/Switch';
 import SignUp from "./Components/SignUp";
+import Show from "./Components/Show";
 
 function App() {
   const [state, setState] = useState({
@@ -46,6 +47,7 @@ function App() {
         <Route path="/artsandcrafts" exact component={Categories} />
         <Route path="/programming" component={Categories}/>
         <Route path="/random" component={Categories}/>
+        <Route path="/show" exact component={Show}/>
         <Route path="/signUp">
           <SignUp />
 
