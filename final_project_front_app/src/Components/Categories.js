@@ -13,7 +13,9 @@ export default function Categories() {
                const response = await fetch(url, { method: 'get'});
                const categoryData = await response.json();
                setCategoryData(categoryData)
+               
           }    
+          
           fetchData();
      },[url]);
 
@@ -35,6 +37,54 @@ export default function Categories() {
      //      fetchGfyCat();
 
      //    },[baseURL]);
+     
+     const [showEditForm, setShowForm] = useState(false)
+     console.log(showEditForm)
+    
+          const EditForm = ({id}) =>{
+               const [formInputs, updateFormInputs] = useState({  name: '', description: '', category: '', id});
+               const handleChange  = async (event) =>{
+                    event.preventDefault()
+                    try{
+                      const response = await fetch ( `http://localhost:3000/gifs/${id}`, {
+                        body: JSON.stringify(formInputs),
+                        method: 'PATCH',
+                        headers: {
+                          'Accept': 'application/json, text/plain, */*',
+                          'Content-Type': 'application/json'
+                        }
+                      })
+                      const data = await response.json()
+                      updateFormInputs({
+                        description: '',
+                        category: '',
+                        name: '',
+                        
+                      })
+                      
+                    }catch(error){
+                      console.error(error)
+                    }
+                  }
+               return ( 
+         <div className="editform">
+           {/* `${JSON.stringify(gifData)}` */}
+           <h4>Edit your gif</h4>
+
+         <form onSubmit= {handleChange}>
+              
+           <label htmlFor="description">description</label>
+           <input type="text" onChange={(event)=>updateFormInputs({...formInputs, description:event.target.value})}/>
+           <label htmlFor="name">name</label>
+           <input type="text" onChange={(event)=>updateFormInputs({...formInputs, name:event.target.value})}/>
+           <input type="submit" className="submit" />
+         </form>
+          <p>{formInputs.name}</p>
+         <img src={formInputs.gif_url} />
+         <p>{formInputs.description}</p>
+         </div>
+       )
+          }
 
      const handleDelete  = async (id) =>{
           //event.preventDefault()
@@ -58,10 +108,12 @@ export default function Categories() {
                     <h2>{categoryItem.name}</h2>
                     <img src={categoryItem.gif_url}/>
                     <button onClick={() => handleDelete(categoryItem.id)} >delete gif</button>
+                    <button onClick = {()=>setShowForm(true)}>edit</button>
+                    {showEditForm ? <EditForm id= {categoryItem.id}></EditForm> : null}
                </div>
                
           );
-     
+               
      });
      // const gfyCatGifs = allReturnedObjects.map((gfyCatGif, index)=>{
      //      return (
@@ -74,6 +126,7 @@ export default function Categories() {
           <div className={""}>
                <h1>{slug}</h1>
                {categoryGifs}
+               
                {/* {gfyCatGifs} */}
           </div>
      )

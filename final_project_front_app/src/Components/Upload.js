@@ -45,7 +45,7 @@ export default function Upload() {
      }
      return (
          <div className="Gifform">
-           `${JSON.stringify(gifData)}`
+           {/* `${JSON.stringify(gifData)}` */}
            <h4>Post your gif</h4>
          <form onSubmit= {handleSubmit}>
            <label htmlFor="description">description</label>
