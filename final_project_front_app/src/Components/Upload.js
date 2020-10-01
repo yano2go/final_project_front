@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Upload() {
-  const url = "http://localhost:3000/gifs";
+  const url = `${process.env.REACT_APP_APILINK}/gifs`;
   const [gifData, setGifData] = useState([]);
   useEffect(() => {
     // if (!query) retu rn;
@@ -23,7 +23,7 @@ export default function Upload() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/gifs", {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}/gifs`, {
         body: JSON.stringify(formInputs),
         method: "POST",
         headers: {

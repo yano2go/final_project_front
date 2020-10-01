@@ -8,7 +8,7 @@ export default function Categories() {
   const { path } = useRouteMatch();
   const slug = path.slice(1); // could be "cooking" or "dyi"
   const [categoryData, setCategoryData] = useState([]);
-  const url = `http://localhost:3000/gifs?category=${slug}`;
+  const url = `${process.env.REACT_APP_APILINK}/gifs?category=${slug}`;
   console.log(url);
   useEffect(() => {
     const fetchData = async () => {
@@ -47,15 +47,18 @@ export default function Categories() {
     const handleChange = async (event) => {
       event.preventDefault();
       try {
-        const response = await fetch(`http://localhost:3000/gifs/${id}`, {
-          body: JSON.stringify(formInputs),
-          method: "PATCH",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_APILINK}/gifs/${id}`,
+          {
+            body: JSON.stringify(formInputs),
+            method: "PATCH",
+            headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            },
+          }
+        );
         const data = await response.json();
         setShowForm(false);
         const updatedCategoryData = categoryData.map((gif) =>
@@ -110,12 +113,15 @@ export default function Categories() {
     //event.preventDefault()
     console.log("the id is: ", id);
     try {
-      const response = await fetch(`http://localhost:3000/gifs/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      });
+      const response = await fetch(
+        ` ${process.env.REACT_APP_APILINK}/gifs/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        }
+      );
       const filterGifs = categoryData.filter((gif) => !(gif.id === id));
       await setCategoryData(filterGifs);
     } catch (error) {
