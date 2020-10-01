@@ -21,6 +21,7 @@ export default class SignUp extends Component {
         });
 
         const data = await response.json();
+        console.log(data);
         localStorage.setItem("jwt", data.token);
         this.setState({
           username: "",
