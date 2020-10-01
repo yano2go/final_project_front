@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import {  Route  } from 'react-router-dom';
-import Upload from './Components/Upload';
-import Homepage from './Components/Homepage';
-import Categories from './Components/Categories';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { Route } from "react-router-dom";
+import Upload from "./Components/Upload";
+import Homepage from "./Components/Homepage";
+import Categories from "./Components/Categories";
 import NavBar from "./Components/NavBar/NavBar";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Switch from 'react-bootstrap/esm/Switch';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Switch from "react-bootstrap/esm/Switch";
 import SignUp from "./Components/SignUp";
+import SignIn from "./Components/SignIn";
 import Show from "./Components/Show";
 
 function App() {
@@ -41,20 +42,21 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact component={Homepage} />
-        <Route path="/upload" exact component={Upload}/>
+        <Route path="/upload" exact component={Upload} />
         <Route path="/cooking" exact component={Categories} />
         <Route path="/diy" exact component={Categories} />
         <Route path="/artsandcrafts" exact component={Categories} />
-        <Route path="/programming" component={Categories}/>
-        <Route path="/random" component={Categories}/>
-        <Route path="/show" exact component={Show}/>
-        <Route path="/signUp">
+        <Route path="/programming" component={Categories} />
+        <Route path="/random" component={Categories} />
+        <Route path="/show" exact component={Show} />
+        <Route path="/signup">
           <SignUp />
-
         </Route>
-        </Switch>
+        <Route path="/signin">
+          <SignIn />
+        </Route>
+      </Switch>
     </div>
-    
   );
 }
 
