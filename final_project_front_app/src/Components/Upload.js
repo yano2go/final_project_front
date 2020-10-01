@@ -4,7 +4,7 @@ export default function Upload() {
   const url = `${process.env.REACT_APP_APILINK}/gifs`;
   const [gifData, setGifData] = useState([]);
   useEffect(() => {
-    // if (!query) retu rn;
+    // if (!que ry) retu rn;
 
     const fetchData = async () => {
       const response = await fetch(url, { method: "get" });
