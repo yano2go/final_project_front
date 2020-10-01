@@ -32,7 +32,7 @@ export default class SignUp extends Component {
     };
 
     return (
-      <div classname="signUpForm">
+      <div className="signUpForm">
         <h4>sign up here</h4>
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">create a username</label>
