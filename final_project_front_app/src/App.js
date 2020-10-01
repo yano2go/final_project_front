@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
 import Upload from "./Components/Upload";
-import Homepage from "./Components/Homepage";
+import Homepage from "./Components/homepage";
 import Categories from "./Components/Categories";
 import NavBar from "./Components/NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
