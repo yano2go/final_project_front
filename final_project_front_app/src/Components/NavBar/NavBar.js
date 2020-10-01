@@ -2,6 +2,18 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
 export default function NavBar() {
+  const useStateWithLocalStorage = (localStorageKey) => {
+    const [value, setValue] = React.useState(
+      localStorage.getItem(localStorageKey) || ""
+    );
+
+    React.useEffect(() => {
+      localStorage.setItem(localStorageKey, value);
+    }, [value]);
+
+    return [value, setValue];
+  };
+  const username = localStorage.getItem("username");
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="blue">
@@ -16,7 +28,12 @@ export default function NavBar() {
             <Nav.Link href="/random">Random</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/signin">Sign In!</Nav.Link>
+            {localStorage.getItem("jwt") ? (
+              <Nav.Link href="/profilepage">{username}</Nav.Link>
+            ) : (
+              <Nav.Link href="/signin"> Sign In!</Nav.Link>
+            )}
+
             <Nav.Link href="/upload">Upload A Gif!</Nav.Link>
           </Nav>
         </Navbar.Collapse>

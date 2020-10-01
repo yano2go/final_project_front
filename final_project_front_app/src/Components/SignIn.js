@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 export default class SignIn extends Component {
   constructor(props) {
     super();
@@ -23,6 +23,7 @@ export default class SignIn extends Component {
         const data = await response.json();
         console.log(data);
         localStorage.setItem("jwt", data.token);
+        localStorage.setItem("username", data.user.username);
         this.setState({
           username: "",
           password: "",
@@ -50,12 +51,12 @@ export default class SignIn extends Component {
               this.setState({ ...this.state, password: event.target.value })
             }
           ></input>
-          <Link to={{ pathname: "/" }}>
-            <button value="Submit" type="submit">
-              log in
-            </button>
-          </Link>
+
+          <button value="Submit" type="submit">
+            log in
+          </button>
         </form>
+        {localStorage.getItem("jwt") ? <Redirect to="/" /> : null}
         <a href="/signup">New User? Sign up here!</a>
       </div>
     );
