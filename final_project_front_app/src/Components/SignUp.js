@@ -7,11 +7,11 @@ export default class SignUp extends Component {
   }
 
   render() {
-    const url = `${process.env.REACT_APP_APILINK}/users`;
+    const url = `${process.env.REACT_APP_APILINK}users`;
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        const response = await fetch(`${process.env.REACT_APP_APILINK}/users`, {
+        const response = await fetch(`${process.env.REACT_APP_APILINK}users`, {
           body: JSON.stringify(this.state),
           method: "POST",
           headers: {

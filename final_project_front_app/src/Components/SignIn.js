@@ -7,11 +7,11 @@ export default class SignIn extends Component {
   }
 
   render() {
-    const url = `${process.env.REACT_APP_APILINK}/login`;
+    const url = `${process.env.REACT_APP_APILINK}login`;
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        const response = await fetch(`${process.env.REACT_APP_APILINK}/login`, {
+        const response = await fetch(`${process.env.REACT_APP_APILINK}login`, {
           body: JSON.stringify(this.state),
           method: "POST",
           headers: {

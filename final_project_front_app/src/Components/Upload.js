@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Upload() {
-  const url = `${process.env.REACT_APP_APILINK}/gifs`;
+  const url = `${process.env.REACT_APP_APILINK}gifs`;
   const [gifData, setGifData] = useState([]);
   useEffect(() => {
     // if (!que ry) retu rn;
@@ -19,11 +19,12 @@ export default function Upload() {
     description: "",
     category: "",
     gif_url: "",
+    //gif_file: "Some/file/path",
   });
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_APILINK}/gifs`, {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}gifs`, {
         body: JSON.stringify(formInputs),
         method: "POST",
         headers: {
@@ -76,6 +77,7 @@ export default function Upload() {
             updateFormInputs({ ...formInputs, name: event.target.value })
           }
         />
+
         <label htmlFor="gif_url">gif_url</label>
         <input
           type="text"
@@ -83,6 +85,14 @@ export default function Upload() {
             updateFormInputs({ ...formInputs, gif_url: event.target.value })
           }
         />
+        {/* <label htmlFor="gif_url">Gif File</label>
+        <input
+          type="file"
+          //value={formInputs.gif_file}
+          onChange={(event) =>
+            updateFormInputs({ ...formInputs, gif_file: event.target.files })
+          }
+        /> */}
         <input type="submit" className="submit" />
       </form>
       <p>{formInputs.name}</p>

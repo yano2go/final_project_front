@@ -8,7 +8,7 @@ export default function Categories() {
   const { path } = useRouteMatch();
   const slug = path.slice(1); // could be "cooking" or "dyi"
   const [categoryData, setCategoryData] = useState([]);
-  const url = `${process.env.REACT_APP_APILINK}/gifs?category=${slug}`;
+  const url = `${process.env.REACT_APP_APILINK}gifs?category=${slug}`;
   console.log(url);
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +48,7 @@ export default function Categories() {
       event.preventDefault();
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_APILINK}/gifs/${id}`,
+          `${process.env.REACT_APP_APILINK}gifs/${id}`,
           {
             body: JSON.stringify(formInputs),
             method: "PATCH",
@@ -114,7 +114,7 @@ export default function Categories() {
     console.log("the id is: ", id);
     try {
       const response = await fetch(
-        ` ${process.env.REACT_APP_APILINK}/gifs/${id}`,
+        ` ${process.env.REACT_APP_APILINK}gifs/${id}`,
         {
           method: "DELETE",
           headers: {
