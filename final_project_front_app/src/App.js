@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import { Route } from "react-router-dom";
 import Upload from "./Components/Upload";
 import Homepage from "./Components/homepage";
@@ -10,6 +9,7 @@ import Switch from "react-bootstrap/esm/Switch";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Show from "./Components/Show";
+import GifSearch from "./Components/GifSearch";
 
 function App() {
   const [state, setState] = useState({
@@ -49,6 +49,7 @@ function App() {
         <Route path="/programming" component={Categories} />
         <Route path="/random" component={Categories} />
         <Route path="/show" exact component={Show} />
+        <Route path="/gifsearch" exact component={GifSearch} />
         <Route path="/signup">
           <SignUp />
         </Route>

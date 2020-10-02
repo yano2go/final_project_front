@@ -85,14 +85,14 @@ export default function Upload() {
             updateFormInputs({ ...formInputs, gif_url: event.target.value })
           }
         />
-        {/* <label htmlFor="gif_url">Gif File</label>
+        <label htmlFor="gif_url">Gif File</label>
         <input
           type="file"
           //value={formInputs.gif_file}
           onChange={(event) =>
             updateFormInputs({ ...formInputs, gif_file: event.target.files })
           }
-        /> */}
+        />
         <input type="submit" className="submit" />
       </form>
       <p>{formInputs.name}</p>

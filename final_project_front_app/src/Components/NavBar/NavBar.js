@@ -13,6 +13,7 @@ export default function NavBar() {
 
     return [value, setValue];
   };
+
   const username = localStorage.getItem("username");
   return (
     <div>
@@ -33,6 +34,7 @@ export default function NavBar() {
             ) : (
               <Nav.Link href="/signin"> Sign In!</Nav.Link>
             )}
+            <Nav.Link href="/logout">Log Out</Nav.Link>
 
             <Nav.Link href="/upload">Upload A Gif!</Nav.Link>
           </Nav>
