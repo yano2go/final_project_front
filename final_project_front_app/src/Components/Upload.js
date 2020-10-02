@@ -19,8 +19,13 @@ export default function Upload() {
     description: "",
     category: "",
     gif_url: "",
-    //gif_file: "Some/file/path",
   });
+  // const data = new FormData();
+  // data.append("name", "");
+  // data.append("description", "");
+  // data.append("gif_url", "");
+  //const [formInputs, updateFormInputs] = useState(data);
+  //const [selectedFile, setSelectedFile] = useState(null);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -44,6 +49,16 @@ export default function Upload() {
       console.error(error);
     }
   };
+  /* const handleUpload = (ev) => {
+    ev.preventDefault();
+    //updateFormInputs({ ...formInputs, gif_file: ev.target.files[0] });
+    console.log(formInputs);
+    setSelectedFile(ev.target.files[0]);
+    updateFormInputs(
+      ...formInputs,
+      formInputs.append("gif_file", selectedFile)
+    );
+  }; */
   return (
     <div className="Gifform">
       {/* `${JSON.stringify(gifData)}` */}
@@ -85,14 +100,12 @@ export default function Upload() {
             updateFormInputs({ ...formInputs, gif_url: event.target.value })
           }
         />
-        <label htmlFor="gif_url">Gif File</label>
+        {/* <label htmlFor="gif_file">Gif File</label>
         <input
           type="file"
           //value={formInputs.gif_file}
-          onChange={(event) =>
-            updateFormInputs({ ...formInputs, gif_file: event.target.files })
-          }
-        />
+          onChange={handleUpload}
+        /> */}
         <input type="submit" className="submit" />
       </form>
       <p>{formInputs.name}</p>
