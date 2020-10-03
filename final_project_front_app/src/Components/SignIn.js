@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
+import LogInHandler from "./LogInHandler";
 export default class SignIn extends Component {
   constructor(props) {
     super();
@@ -8,51 +9,29 @@ export default class SignIn extends Component {
 
   render() {
     const url = `${process.env.REACT_APP_APILINK}login`;
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        const response = await fetch(`${process.env.REACT_APP_APILINK}login`, {
-          body: JSON.stringify(this.state),
-          method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-        });
-
-        const data = await response.json();
-        console.log(data);
-        localStorage.setItem("jwt", data.token);
-        localStorage.setItem("username", data.user.username);
-        this.setState({
-          username: "",
-          password: "",
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
     return (
       <div className="signInForm">
         <h4>sign in here</h4>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={this.props.handleSignIn}>
           <label htmlFor="username">username</label>
           <input
             type="text"
-            onChange={(event) =>
-              this.setState({ ...this.state, username: event.target.value })
-            }
+            name="username"
+            onChange={this.props.handleInput}
           />
           <label htmlFor="password">password</label>
           <input
             type="password"
-            onChange={(event) =>
-              this.setState({ ...this.state, password: event.target.value })
-            }
+            name="password"
+            onChange={this.props.handleInput}
           ></input>
 
-          <button value="Submit" type="submit">
+          <button
+            value="Submit"
+            type="submit"
+            onClick={this.props.handleSignIn}
+          >
             log in
           </button>
         </form>

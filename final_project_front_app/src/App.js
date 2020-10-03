@@ -10,6 +10,7 @@ import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Show from "./Components/Show";
 import GifSearch from "./Components/GifSearch";
+import LogInHandler from "./Components/LogInHandler";
 
 function App() {
   const [state, setState] = useState({
@@ -20,26 +21,67 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [isLoggedIn]);
-
   const handleLogOut = () => {};
 
   const handleInput = (event) => {
+    event.preventDefault();
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
-  const handleSignUp = (event) => {};
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}users`, {
+        body: JSON.stringify(state),
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      });
 
-  const handleLogIn = (event) => {};
+      const data = await response.json();
+      console.log(data);
+      localStorage.setItem("jwt", data.token);
+      localStorage.setItem("username", data.user.username);
+      setState({
+        username: "",
+        password: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleLogIn = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}login`, {
+        body: JSON.stringify(state),
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+      localStorage.setItem("jwt", data.token);
+      localStorage.setItem("username", data.user.username);
+
+      setState({
+        username: "",
+        password: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
-      <NavBar />
+      <NavBar username={state.username} />
       <Switch>
         <Route path="/" exact component={Homepage} />
         <Route path="/upload" exact component={Upload} />
@@ -51,10 +93,10 @@ function App() {
         <Route path="/show" exact component={Show} />
         <Route path="/gifsearch" exact component={GifSearch} />
         <Route path="/signup">
-          <SignUp />
+          <SignUp handleSignUp={handleSignUp} handleInput={handleInput} />
         </Route>
         <Route path="/signin">
-          <SignIn />
+          <SignIn handleSignIn={handleLogIn} handleInput={handleInput} />
         </Route>
       </Switch>
     </div>
