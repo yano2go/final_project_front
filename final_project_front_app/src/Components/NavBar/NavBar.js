@@ -27,6 +27,7 @@ export default function NavBar() {
             <Nav.Link href="/artsandcrafts">Arts and Crafts</Nav.Link>
             <Nav.Link href="/programming">Programming</Nav.Link>
             <Nav.Link href="/random">Random</Nav.Link>
+            <Nav.Link href="/gifsearch">search for gifs!</Nav.Link>
           </Nav>
           <Nav>
             {localStorage.getItem("jwt") ? (
