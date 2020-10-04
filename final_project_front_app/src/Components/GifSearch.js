@@ -5,7 +5,6 @@ function GifSearch() {
   const [titles, setTitles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
-  const [filteredTitles, setFilteredTitles] = useState([]);
   const axios_instance = axios.create({
     baseURL: process.env.REACT_APP_APILINK,
   });
@@ -37,8 +36,8 @@ function GifSearch() {
             .toLowerCase()
             .includes(search.toLowerCase())
         )
-        .map((gifs, i) => (
-          <GifDetail key={i} {...gifs} />
+        .map((gif, i) => (
+          <GifDetail key={i} {...gif} />
         ))}
     </div>
   );

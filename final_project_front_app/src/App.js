@@ -11,7 +11,6 @@ import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Show from "./Components/Show";
 import GifSearch from "./Components/GifSearch";
-import LogInHandler from "./Components/LogInHandler";
 import Profilepage from "./Components/Profilepage";
 
 function App(props) {

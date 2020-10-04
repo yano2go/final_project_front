@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import LogInHandler from "./LogInHandler";
 export default class SignIn extends Component {
   constructor(props) {
     super();
