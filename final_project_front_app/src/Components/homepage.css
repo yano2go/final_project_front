@@ -1,0 +1,15 @@
+.homeGifs {
+  height: 230px;
+  width: 230px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.category {
+  margin-left: 9px;
+  margin-right: 9px;
+  align-content: center;
+}

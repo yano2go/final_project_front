@@ -5,12 +5,14 @@ import Homepage from "./Components/homepage";
 import Categories from "./Components/Categories";
 import NavBar from "./Components/NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import Switch from "react-bootstrap/esm/Switch";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Show from "./Components/Show";
 import GifSearch from "./Components/GifSearch";
 import LogInHandler from "./Components/LogInHandler";
+import Profilepage from "./Components/Profilepage";
 
 function App(props) {
   const [state, setState] = useState({
@@ -87,7 +89,7 @@ function App(props) {
   };
 
   return (
-    <div>
+    <div className="fullSite">
       <NavBar isLoggedIn={isLoggedIn} logout={handleLogOut} />
       <Switch>
         <Route path="/" exact component={Homepage} />
@@ -96,6 +98,7 @@ function App(props) {
         <Route path="/diy" exact component={Categories} />
         <Route path="/artsandcrafts" exact component={Categories} />
         <Route path="/programming" component={Categories} />
+        <Route path="/profilepage" component={Profilepage} />
         <Route path="/random" component={Categories} />
         <Route path="/show" exact component={Show} />
         <Route path="/gifsearch" exact component={GifSearch} />
