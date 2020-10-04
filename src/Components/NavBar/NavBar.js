@@ -12,10 +12,16 @@ export default function NavBar(props) {
           <NavDropdown.Item href="/cooking">cooking</NavDropdown.Item>
           <NavDropdown.Item href="/diy">diy</NavDropdown.Item>
           <NavDropdown.Item href="/programming">programming</NavDropdown.Item>
-          <NavDropdown.Divider />
+          <NavDropdown.Item href="/random">random</NavDropdown.Item>
+          <NavDropdown.Item href="/signin">Log In</NavDropdown.Item>
           <NavDropdown.Item href="/artsandcrafts">
             arts and crafts
           </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="/gifsearch">
+            search for a gif!
+          </NavDropdown.Item>
+          <NavDropdown.Item href="/profilepage">your uploads</NavDropdown.Item>
         </NavDropdown>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -30,15 +36,17 @@ export default function NavBar(props) {
 
           <Nav>
             {props.isLoggedIn ? (
-              <Nav.Link href="/profilepage">{username}</Nav.Link>
+              <>
+                {" "}
+                <Nav.Link href="/profilepage">{username}'s uploads</Nav.Link>
+                <Nav.Link onClick={props.logout} href="/">
+                  Log Out
+                </Nav.Link>
+                <Nav.Link href="/upload">Upload A Gif!</Nav.Link>
+              </>
             ) : (
-              <Nav.Link href="/signin"> Sign In!</Nav.Link>
+              <Nav.Link href="/signin"> Sign In To Upload!</Nav.Link>
             )}
-
-            <Nav.Link onClick={props.logout} href="/">
-              Log Out
-            </Nav.Link>
-            <Nav.Link href="/upload">Upload A Gif!</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
