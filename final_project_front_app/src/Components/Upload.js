@@ -3,19 +3,8 @@ import { Redirect } from "react-router";
 
 export default function Upload() {
   const url = `${process.env.REACT_APP_APILINK}gifs`;
-  const [gifData, setGifData] = useState([]);
   const [category, setCategory] = useState(false);
-  useEffect(() => {
-    // if (!que ry) retu rn;
 
-    const fetchData = async () => {
-      const response = await fetch(url, { method: "get" });
-      const gifData = await response.json();
-      setGifData(gifData);
-    };
-
-    fetchData();
-  }, [url]);
   const [formInputs, updateFormInputs] = useState({
     name: "",
     description: "",
