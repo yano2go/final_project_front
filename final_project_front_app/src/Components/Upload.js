@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router";
 
 export default function Upload() {
   const url = `${process.env.REACT_APP_APILINK}gifs`;
   const [gifData, setGifData] = useState([]);
+  const [category, setCategory] = useState(false);
   useEffect(() => {
     // if (!que ry) retu rn;
 
@@ -34,6 +36,8 @@ export default function Upload() {
         },
       });
       const data = await response.json();
+      console.log(data);
+      setCategory(data.category);
       updateFormInputs({
         description: "",
         category: "",
@@ -82,7 +86,6 @@ export default function Upload() {
             updateFormInputs({ ...formInputs, name: event.target.value })
           }
         />
-
         <label htmlFor="gif_url">gif_url</label>
         <input
           type="text"
@@ -96,7 +99,8 @@ export default function Upload() {
           //value={formInputs.gif_file}
           onChange={handleUpload}
         /> */}
-        <input type="submit" className="submit" />
+        <input type="submit" className="submit" />{" "}
+        {category ? <Redirect to={"/" + category} /> : null}
       </form>
       <p>{formInputs.name}</p>
       <img src={formInputs.gif_url} />

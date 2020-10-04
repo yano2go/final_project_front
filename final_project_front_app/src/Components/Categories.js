@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Categories.css";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -39,69 +40,6 @@ export default function Categories() {
     fetchGfyCat();
   }, [baseURL]);
 
-  const [showEditForm, setShowForm] = useState(false);
-  console.log(categoryData);
-
-  const EditForm = ({ id }) => {
-    const [formInputs, setFormInputs] = useState({ name: "", description: "" });
-    const handleChange = async (event) => {
-      event.preventDefault();
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_APILINK}gifs/${id}`,
-          {
-            body: JSON.stringify(formInputs),
-            method: "PATCH",
-            headers: {
-              Accept: "application/json, text/plain, */*",
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            },
-          }
-        );
-        const data = await response.json();
-        setShowForm(false);
-        const updatedCategoryData = categoryData.map((gif) =>
-          gif.id === id ? data : gif
-        );
-        await setCategoryData(updatedCategoryData);
-        // setFormInputs({
-        //   description: '',
-        //   name: '',
-
-        // })
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    return (
-      <div className="editform">
-        {/* `${JSON.stringify(gifData)}` */}
-        <h4>Edit your gif</h4>
-
-        <form onSubmit={handleChange}>
-          <label htmlFor="description">description</label>
-          <input
-            type="text"
-            onChange={(event) =>
-              setFormInputs({ ...formInputs, description: event.target.value })
-            }
-          />
-          <label htmlFor="name">name</label>
-          <input
-            type="text"
-            onChange={(event) =>
-              setFormInputs({ ...formInputs, name: event.target.value })
-            }
-          />
-          <input type="submit" className="submit" />
-        </form>
-        <p>{formInputs.name}</p>
-        <img src={formInputs.gif_url} />
-        <p>{formInputs.description}</p>
-      </div>
-    );
-  };
   const gfyCatGifs = allReturnedObjects.map((gfyCatGif, index) => {
     return (
       <div key={index}>
@@ -109,25 +47,7 @@ export default function Categories() {
       </div>
     );
   });
-  const handleDelete = async (id) => {
-    //event.preventDefault()
-    console.log("the id is: ", id);
-    try {
-      const response = await fetch(
-        ` ${process.env.REACT_APP_APILINK}gifs/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      );
-      const filterGifs = categoryData.filter((gif) => !(gif.id === id));
-      await setCategoryData(filterGifs);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   const categoryGifs = categoryData.map((categoryItem, index) => {
     console.log(categoryItem.id);
     return (
@@ -137,17 +57,12 @@ export default function Categories() {
           <img src={categoryItem.gif_url} />
           <p>{categoryItem.description}</p>
         </Link>
-        <button onClick={() => handleDelete(categoryItem.id)}>
-          delete gif
-        </button>
-        <button onClick={() => setShowForm(true)}>edit</button>
-        {showEditForm ? <EditForm id={categoryItem.id}></EditForm> : null}
       </div>
     );
   });
 
   return (
-    <div className={"display"}>
+    <div className="card">
       <h1>{slug}</h1>
       {categoryGifs}
       {slug == `cooking` ? gfyCatGifs : null}

@@ -51,6 +51,7 @@ function App(props) {
       console.log(data);
       localStorage.setItem("jwt", data.token);
       localStorage.setItem("username", data.user.username);
+      localStorage.setItem("user_id", data.user.id);
       setState({
         username: "",
         password: "",
@@ -77,7 +78,7 @@ function App(props) {
       console.log(data);
       localStorage.setItem("jwt", data.token);
       localStorage.setItem("username", data.user.username);
-
+      localStorage.setItem("user_id", data.user.id);
       setState({
         username: "",
         password: "",
