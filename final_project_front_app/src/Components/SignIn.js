@@ -35,7 +35,9 @@ export default class SignIn extends Component {
             log in
           </button>
         </form>
-        {localStorage.getItem("jwt") ? <Redirect to="/" /> : null}
+        {localStorage.getItem("jwt") ? (
+          <Redirect to={{ pathname: "/", state: { isLoggedIn: true } }} />
+        ) : null}
         <a href="/signup">New User? Sign up here!</a>
       </div>
     );

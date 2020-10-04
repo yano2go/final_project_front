@@ -69,11 +69,11 @@ export default function Upload() {
           }
         >
           <option>select an option</option>
-          <option>Arts and crafts</option>
-          <option>programming</option>
-          <option>cooking</option>
-          <option>DIY</option>
-          <option>Random</option>
+          <option value="artsandcrafts">Arts and crafts</option>
+          <option value="programming">programming</option>
+          <option value="cooking">cooking</option>
+          <option value="diy">DIY</option>
+          <option value="random">Random</option>
         </select>
         <label htmlFor="name">name</label>
         <input

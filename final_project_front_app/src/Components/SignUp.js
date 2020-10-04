@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-
+import { Link, Redirect } from "react-router-dom";
 export default class SignUp extends Component {
   constructor(props) {
     super();
-    this.state = { username: "", password: "" };
   }
 
   render() {
@@ -33,6 +32,7 @@ export default class SignUp extends Component {
             Sign Up!
           </button>
         </form>
+        {localStorage.getItem("jwt") ? <Redirect to="/" /> : null}
       </div>
     );
   }

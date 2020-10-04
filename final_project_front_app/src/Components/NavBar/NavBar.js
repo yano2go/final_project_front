@@ -1,19 +1,9 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
-export default function NavBar() {
-  const useStateWithLocalStorage = (localStorageKey) => {
-    const [value, setValue] = React.useState(
-      localStorage.getItem(localStorageKey) || ""
-    );
 
-    React.useEffect(() => {
-      localStorage.setItem(localStorageKey, value);
-    }, [value]);
-
-    return [value, setValue];
-  };
-
+export default function NavBar(props) {
+  console.log(props);
   const username = localStorage.getItem("username");
   return (
     <div>
@@ -30,13 +20,15 @@ export default function NavBar() {
             <Nav.Link href="/gifsearch">search for gifs!</Nav.Link>
           </Nav>
           <Nav>
-            {localStorage.getItem("jwt") ? (
+            {props.isLoggedIn ? (
               <Nav.Link href="/profilepage">{username}</Nav.Link>
             ) : (
               <Nav.Link href="/signin"> Sign In!</Nav.Link>
             )}
-            <Nav.Link href="/logout">Log Out</Nav.Link>
 
+            <Nav.Link onClick={props.logout} href="/">
+              Log Out
+            </Nav.Link>
             <Nav.Link href="/upload">Upload A Gif!</Nav.Link>
           </Nav>
         </Navbar.Collapse>

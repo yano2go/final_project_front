@@ -12,16 +12,21 @@ import Show from "./Components/Show";
 import GifSearch from "./Components/GifSearch";
 import LogInHandler from "./Components/LogInHandler";
 
-function App() {
+function App(props) {
   const [state, setState] = useState({
     username: "",
     password: "",
-    isLoggedIn: false,
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("jwt"));
+  console.log("app refreshed", isLoggedIn, props);
 
-  const handleLogOut = () => {};
+  const handleLogOut = (event) => {
+    event.preventDefault();
+    setIsLoggedIn(false);
+    localStorage.clear();
+    console.log(isLoggedIn);
+  };
 
   const handleInput = (event) => {
     event.preventDefault();
@@ -48,6 +53,7 @@ function App() {
         username: "",
         password: "",
       });
+      setIsLoggedIn(true);
     } catch (error) {
       console.error(error);
     }
@@ -74,6 +80,7 @@ function App() {
         username: "",
         password: "",
       });
+      setIsLoggedIn(true);
     } catch (error) {
       console.error(error);
     }
@@ -81,7 +88,7 @@ function App() {
 
   return (
     <div>
-      <NavBar username={state.username} />
+      <NavBar isLoggedIn={isLoggedIn} logout={handleLogOut} />
       <Switch>
         <Route path="/" exact component={Homepage} />
         <Route path="/upload" exact component={Upload} />

@@ -40,7 +40,7 @@ export default function Categories() {
   }, [baseURL]);
 
   const [showEditForm, setShowForm] = useState(false);
-  console.log(showEditForm);
+  console.log(categoryData);
 
   const EditForm = ({ id }) => {
     const [formInputs, setFormInputs] = useState({ name: "", description: "" });
@@ -147,7 +147,7 @@ export default function Categories() {
   });
 
   return (
-    <div className={""}>
+    <div className={"display"}>
       <h1>{slug}</h1>
       {categoryGifs}
       {slug == `cooking` ? gfyCatGifs : null}
