@@ -53,16 +53,16 @@ export default function Categories() {
     return (
       <div key={index}>
         <Link to={{ pathname: "/show", state: { categoryItem } }}>
-          <h2>{categoryItem.name}</h2>
-          <img src={categoryItem.gif_url} />
-          <p>{categoryItem.description}</p>
+          <h2 className="card">{categoryItem.name}</h2>
+          <img className="card" src={categoryItem.gif_url}></img>
+          <p className="card">{categoryItem.description}</p>
         </Link>
       </div>
     );
   });
 
   return (
-    <div className="card">
+    <div className="display">
       <h1>{slug}</h1>
       {categoryGifs}
       {slug == `cooking` ? gfyCatGifs : null}

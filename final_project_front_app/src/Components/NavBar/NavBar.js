@@ -8,7 +8,7 @@ export default function NavBar(props) {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="blue">
-        <NavDropdown>
+        <NavDropdown title="Learning in Gifs">
           <NavDropdown.Item href="/cooking">cooking</NavDropdown.Item>
           <NavDropdown.Item href="/diy">diy</NavDropdown.Item>
           <NavDropdown.Item href="/programming">programming</NavDropdown.Item>
@@ -17,7 +17,6 @@ export default function NavBar(props) {
             arts and crafts
           </NavDropdown.Item>
         </NavDropdown>
-        <Navbar.Brand href="/">Learning in Gifs</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
