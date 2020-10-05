@@ -10,7 +10,7 @@ export default function NavBar(props) {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="blue">
         <NavDropdown title="Learning in Gifs">
           <NavDropdown.Item href="/cooking">cooking</NavDropdown.Item>
-          <NavDropdown.Item href="/diy">diy</NavDropdown.Item>
+          <NavDropdown.Item href="/drinks">drinks</NavDropdown.Item>
           <NavDropdown.Item href="/programming">programming</NavDropdown.Item>
           <NavDropdown.Item href="/random">random</NavDropdown.Item>
           <NavDropdown.Item href="/signin">Log In</NavDropdown.Item>
@@ -27,7 +27,7 @@ export default function NavBar(props) {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/cooking">Cooking</Nav.Link>
-            <Nav.Link href="/diy">DIY</Nav.Link>
+            <Nav.Link href="/drinks">Drinks</Nav.Link>
             <Nav.Link href="/artsandcrafts">Arts and Crafts</Nav.Link>
             <Nav.Link href="/programming">Programming</Nav.Link>
             <Nav.Link href="/random">Random</Nav.Link>

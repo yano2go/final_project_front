@@ -65,7 +65,7 @@ export default function Upload() {
           <option value="artsandcrafts">Arts and crafts</option>
           <option value="programming">programming</option>
           <option value="cooking">cooking</option>
-          <option value="diy">DIY</option>
+          <option value="drinks">Drinks</option>
           <option value="random">Random</option>
         </select>
         <label htmlFor="name">name</label>

@@ -10,9 +10,10 @@ export default function Homepage(props) {
       slug: "/cooking",
     },
     {
-      name: "DIY",
-      image_url: "https://media.giphy.com/media/f74WDV59cP0NArh8gu/giphy.gif",
-      slug: "/diy",
+      name: "Drinks",
+      image_url:
+        "https://media3.giphy.com/media/3oKIPuGIRtjn3vAaFW/giphy.gif?cid=ecf05e47p1f54hek3wc8c63ldp0w5gjy199m6ws4j0im7ggd&rid=giphy.gif",
+      slug: "/drinks",
     },
     {
       name: "Arts and Crafts",

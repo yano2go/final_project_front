@@ -94,7 +94,7 @@ function App(props) {
         <Route path="/" exact component={Homepage} />
         <Route path="/upload" exact component={Upload} />
         <Route path="/cooking" exact component={Categories} />
-        <Route path="/diy" exact component={Categories} />
+        <Route path="/drinks" exact component={Categories} />
         <Route path="/artsandcrafts" exact component={Categories} />
         <Route path="/programming" component={Categories} />
         <Route path="/profilepage" component={Profilepage} />
