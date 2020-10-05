@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 
 export default function Upload() {
-  const url = `${process.env.REACT_APP_APILINK}gifs`;
+  const url = `${process.env.REACT_APP_APILINK}/gifs`;
   const [category, setCategory] = useState(false);
 
   const [formInputs, updateFormInputs] = useState({
@@ -15,7 +15,7 @@ export default function Upload() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_APILINK}gifs`, {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}/gifs`, {
         body: JSON.stringify(formInputs),
         method: "POST",
         headers: {

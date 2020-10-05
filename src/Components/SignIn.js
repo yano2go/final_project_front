@@ -7,7 +7,7 @@ export default class SignIn extends Component {
   }
 
   render() {
-    const url = `${process.env.REACT_APP_APILINK}login`;
+    const url = `${process.env.REACT_APP_APILINK}/login`;
 
     return (
       <div className="signInForm">

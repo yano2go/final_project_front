@@ -10,7 +10,7 @@ export default function Categories() {
   const { path } = useRouteMatch();
   const slug = path.slice(1); // could be "cooking" or "dyi"
   const [categoryData, setCategoryData] = useState([]);
-  const url = `${process.env.REACT_APP_APILINK}gifs?category=${slug}`;
+  const url = `${process.env.REACT_APP_APILINK}/gifs?category=${slug}`;
   console.log(url);
   const useStyles = makeStyles((theme) => ({
     root: {

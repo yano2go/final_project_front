@@ -6,7 +6,7 @@ export default class SignUp extends Component {
   }
 
   render() {
-    const url = `${process.env.REACT_APP_APILINK}users`;
+    const url = `${process.env.REACT_APP_APILINK}/users`;
 
     return (
       <div className="signUpForm">

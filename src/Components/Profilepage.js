@@ -12,7 +12,7 @@ export default function Profilepage() {
       event.preventDefault();
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_APILINK}gifs/${id}`,
+          `${process.env.REACT_APP_APILINK}/gifs/${id}`,
           {
             body: JSON.stringify(formInputs),
             method: "PATCH",
@@ -87,7 +87,7 @@ export default function Profilepage() {
     console.log("the id is: ", id);
     try {
       const response = await fetch(
-        ` ${process.env.REACT_APP_APILINK}gifs/${id}`,
+        ` ${process.env.REACT_APP_APILINK}/gifs/${id}`,
         {
           method: "DELETE",
           headers: {

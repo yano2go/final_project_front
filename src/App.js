@@ -36,7 +36,7 @@ function App(props) {
   const handleSignUp = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_APILINK}users`, {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}/users`, {
         body: JSON.stringify(state),
         method: "POST",
         headers: {
@@ -63,7 +63,7 @@ function App(props) {
   const handleLogIn = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_APILINK}login`, {
+      const response = await fetch(`${process.env.REACT_APP_APILINK}/login`, {
         body: JSON.stringify(state),
         method: "POST",
         headers: {
