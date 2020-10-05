@@ -2,50 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
-
-function AutoGrid() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-      </Grid>
-    </div>
-  );
-}
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 export default function Categories() {
   const { path } = useRouteMatch();
@@ -53,44 +12,107 @@ export default function Categories() {
   const [categoryData, setCategoryData] = useState([]);
   const url = `${process.env.REACT_APP_APILINK}gifs?category=${slug}`;
   console.log(url);
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      overflow: "hidden",
+      backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+      width: 1300,
+      // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+      transform: "translateZ(0)",
+    },
+    titleBar: {
+      background:
+        "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
+        "rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+    },
+    slug: {
+      textAlign: "center",
+      margin: "10px",
+    },
+  }));
+
+  const classes = useStyles();
   useEffect(() => {
+    const APIKEY = process.env.REACT_APP_APIKEY;
+
+    const baseURL =
+      "https://api.gfycat.com/v1/gfycats/search?search_text=cooking";
     const fetchData = async () => {
       const response = await fetch(url, { method: "get" });
-      const categoryData = await response.json();
-      setCategoryData(categoryData);
+      const categoryResponseData = await response.json();
+      setCategoryData(categoryResponseData);
+      if (slug === "cooking") {
+        await fetchGfyCat();
+      }
     };
-
-    fetchData();
-  }, [url]);
-
-  const APIKEY = process.env.REACT_APP_APIKEY;
-
-  const [allReturnedObjects, setAllReturnedObjects] = useState([]);
-
-  const baseURL =
-    "https://api.gfycat.com/v1/gfycats/search?search_text=cooking";
-
-  useEffect(() => {
     const fetchGfyCat = async () => {
       const gfyCatResponse = await fetch(baseURL, {
         method: "get",
         Authorization: `${APIKEY}`,
       });
       const allReturnedData = await gfyCatResponse.json();
-      setAllReturnedObjects(allReturnedData.gfycats);
+      const allGifs = allReturnedData.gfycats.map((gif) => {
+        return {
+          name: gif.title,
+          gif_url: gif.gifUrl,
+        };
+      });
+      setCategoryData((prev) => [...prev, ...allGifs]);
     };
-    fetchGfyCat();
-  }, [baseURL]);
+    fetchData();
+  }, [url]);
 
-  const gfyCatGifs = allReturnedObjects.map((gfyCatGif, index) => {
+  /* const gfyCatGifs = (
+    <GridList cellHeight={500} spacing={2} className={classes.gridList}>
+      {allReturnedObjects.map((tile) => (
+        <GridListTile key={tile.gifUrl} cols={0.5} rows={0.5}>
+          <img src={tile.gifUrl} alt={tile.title} />
+          <GridListTileBar
+            title={tile.title}
+            titlePosition="top"
+            className={classes.titleBar}
+          />
+        </GridListTile>
+      ))}
+    </GridList>
+  ); */
+  /* allReturnedObjects.map((gfyCatGif, index) => {
     return (
       <div key={index}>
         <img src={gfyCatGif.gifUrl} />
       </div>
     );
-  });
+  }); */
+  const categoryGifs = (
+    <GridList cellHeight={500} spacing={2} className={classes.gridList}>
+      {categoryData.map((tile) => (
+        <GridListTile key={tile.gif_url} cols={0.5} rows={0.5}>
+          <img src={tile.gif_url} alt={tile.name} />
+          <Link to={{ pathname: "/show", state: { tile } }}>
+            <GridListTileBar
+              title={tile.name}
+              titlePosition="top"
+              className={classes.titleBar}
+            />
+          </Link>
+          {tile.description && (
+            <GridListTileBar
+              title={tile.description}
+              titlePosition="bottom"
+              className={classes.titleBar}
+            />
+          )}
+        </GridListTile>
+      ))}
+    </GridList>
+  );
 
-  const categoryGifs = categoryData.map((categoryItem, index) => {
+  /* categoryData.map((categoryItem, index) => {
     console.log(categoryItem.id);
     return (
       <div key={index}>
@@ -101,14 +123,16 @@ export default function Categories() {
         </Link>
       </div>
     );
-  });
+  }); */
 
   return (
     <div className="display">
-      <h1>{slug}</h1>
-      {categoryGifs}
-      {slug == `cooking` ? gfyCatGifs : null}
-      {/* {gfyCatGifs} */}
+      <h1 className={classes.slug}>{slug}</h1>
+      <div className={classes.root}>
+        {/*slug == `cooking` ? gfyCatGifs : null*/}
+        {categoryGifs}
+        {/* {gfyCatGifs} */}
+      </div>
     </div>
   );
 }
