@@ -1,9 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./Categories.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
+
+function AutoGrid() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs>
+          <Paper className={classes.paper}>xs</Paper>
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}>xs</Paper>
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}>xs</Paper>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs>
+          <Paper className={classes.paper}>xs</Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}>xs</Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
 
 export default function Categories() {
   const { path } = useRouteMatch();
@@ -53,9 +95,9 @@ export default function Categories() {
     return (
       <div key={index}>
         <Link to={{ pathname: "/show", state: { categoryItem } }}>
-          <h2 className="card">{categoryItem.name}</h2>
-          <img className="card" src={categoryItem.gif_url}></img>
-          <p className="card">{categoryItem.description}</p>
+          <h2>{categoryItem.name}</h2>
+          <img src={categoryItem.gif_url} />
+          <p>{categoryItem.description}</p>
         </Link>
       </div>
     );

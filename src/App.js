@@ -5,7 +5,6 @@ import Homepage from "./Components/homepage";
 import Categories from "./Components/Categories";
 import NavBar from "./Components/NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import Switch from "react-bootstrap/esm/Switch";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
