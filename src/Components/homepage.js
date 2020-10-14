@@ -1,7 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./homepage.css";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    overflow: "hidden",
+  },
+  homeGifs: {
+    height: "230px",
+    width: "230px",
+  },
+}));
+
 export default function Homepage(props) {
+  const classes = useStyles();
   const categories = [
     {
       name: "Cooking Gifs",
@@ -34,21 +54,33 @@ export default function Homepage(props) {
   ];
 
   return (
-    <div className="container">
-      {categories.map((category, i) => {
-        return (
-          <Link
-            className="homepageLinks"
-            to={category.slug}
-            key={`${i}-${category.name}`}
-          >
-            <div className="category">
-              <h3>{category.name}</h3>
-              <img className="homeGifs" src={category.image_url} />
-            </div>
-          </Link>
-        );
-      })}
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        {categories.map((category, i) => {
+          return (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              key={`${i}-${category.name}`}
+            >
+              <Paper className={classes.paper}>
+                <Link className="homepageLinks" to={category.slug}>
+                  <div className="category">
+                    <h3>{category.name}</h3>
+                    <img
+                      className={classes.homeGifs}
+                      src={category.image_url}
+                    />
+                  </div>
+                </Link>
+              </Paper>
+            </Grid>
+          );
+        })}
+      </Grid>
     </div>
   );
 }

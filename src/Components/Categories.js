@@ -3,10 +3,11 @@ import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
+import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 
-export default function Categories() {
+const Categories = (props) => {
   const { path } = useRouteMatch();
   const slug = path.slice(1); // could be "cooking" or "dyi"
   const [categoryData, setCategoryData] = useState([]);
@@ -88,10 +89,29 @@ export default function Categories() {
       </div>
     );
   }); */
+  const getCols = () => {
+    if (isWidthUp("lg", props.width)) {
+      return 4;
+    }
+    if (isWidthUp("md", props.width)) {
+      return 3;
+    }
+    if (isWidthUp("sm", props.width)) {
+      return 2;
+    }
+    if (isWidthUp("xs", props.width)) {
+      return 1;
+    }
+  };
   const categoryGifs = (
-    <GridList cellHeight={500} spacing={2} className={classes.gridList}>
+    <GridList
+      cellHeight={500}
+      spacing={2}
+      className={classes.gridList}
+      cols={getCols()}
+    >
       {categoryData.map((tile) => (
-        <GridListTile key={tile.gif_url} cols={0.5} rows={0.5}>
+        <GridListTile key={tile.gif_url} cols={1} rows={0.5}>
           <img src={tile.gif_url} alt={tile.name} />
           <Link to={{ pathname: "/show", state: { tile } }}>
             <GridListTileBar
@@ -135,4 +155,5 @@ export default function Categories() {
       </div>
     </div>
   );
-}
+};
+export default withWidth()(Categories);
